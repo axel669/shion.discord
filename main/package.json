@@ -1,15 +1,15 @@
 {
-  "name": "shion.discord",
+  "name": "shion-discord",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@axel669/aws-deploy": "^0.4.4"
+    "@labyrinthos/http": "^0.1.0",
+    "tweetnacl": "^1.0.3"
   }
 }

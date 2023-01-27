@@ -1,0 +1,30 @@
+region: us-west-1
+tags:
+  project: Shion Discord
+
+deployment:
+  resources:
+    - lambda:main
+    - apig:main
+
+lambda:
+  main:
+    dir: main
+    name: shion-discord_main
+    runtime: nodejs18.x
+    memory: 128
+    timeout: 30
+
+apig:
+  main:
+    name: Shion Discord
+    stage: dev
+    actions:
+      commands:
+        type: function
+        func: main
+    routes:
+      "GET /":
+        action: commands
+      "POST /":
+        action: commands
