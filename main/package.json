@@ -11,5 +11,9 @@
   "dependencies": {
     "@labyrinthos/http": "^0.1.0",
     "tweetnacl": "^1.0.3"
+  },
+  "imports": {
+    "#discord": "./comm/discord.mjs",
+    "#color": "./misc/color.mjs"
   }
 }
