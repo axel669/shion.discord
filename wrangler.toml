@@ -2,6 +2,9 @@ name = "shion-discord"
 workers_dev = true
 compatibility_date = "2022-10-31"
 
+[build.upload]
+format = "modules"
+dir = "worker"
 main = "./main.mjs"
 
 [vars]
