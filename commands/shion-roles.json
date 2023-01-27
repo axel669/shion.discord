@@ -1,0 +1,7 @@
+{
+    "name": "shion-roles",
+    "type": 1,
+    "description": "Have Shion generate a message to give out different roles",
+    "default_member_permissions": "0",
+    "options": []
+}
