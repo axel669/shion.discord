@@ -1,0 +1,45 @@
+const msg = {
+    "app_permissions": "1501493198551",
+    "application_id": "1041427678605090838",
+    "channel_id": "945929869265604648",
+    "data": {
+        "id": "1041442350146261092",
+        "name": "shion",
+        "type": 1
+    },
+    "entitlement_sku_ids": [],
+    "guild_id": "800853022468210768",
+    "guild_locale": "en-US",
+    "id": "1041523138103627908",
+    "locale": "en-US",
+    "member": {
+        "avatar": null,
+        "communication_disabled_until": null,
+        "deaf": false,
+        "flags": 0,
+        "is_pending": false,
+        "joined_at": "2021-01-18T22:23:59.751000+00:00",
+        "mute": false,
+        "nick": null,
+        "pending": false,
+        "permissions": "4398046511103",
+        "premium_since": null,
+        "roles": [
+            "915782673526566912",
+            "800906687576932385",
+            "800854784407371848",
+            "862526010188627989",
+            "800906687576932382"
+        ],
+        "user": {
+            "avatar": "8ba10265e5c17ec6643cd611ddd237f7",
+            "avatar_decoration": null,
+            "discriminator": "6482",
+            "id": "125507466187374592",
+            "public_flags": 0,
+            "username": "Axel669"
+        }
+    },
+    "type": 2,
+    "version": 1
+}

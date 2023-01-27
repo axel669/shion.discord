@@ -1,0 +1,37 @@
+{
+    "name": "shion",
+    "type": 1,
+    "description": "Have Shion generate a message to give out a role.",
+    "options": [
+        {
+            "name": "role",
+            "description": "Role to grant.",
+            "type": 8,
+            "required": true
+        },
+        {
+            "name": "channel",
+            "description": "Channel to put the message in.",
+            "type": 7,
+            "required": true
+        },
+        {
+            "name": "title",
+            "description": "Cool title to show in the message.",
+            "type": 3,
+            "required": true
+        },
+        {
+            "name": "blurb",
+            "description": "Short message telling people what the role is for.",
+            "type": 3,
+            "required": true
+        },
+        {
+            "name": "color",
+            "description": "The color for the side of the side of the embed.",
+            "type": 3,
+            "required": false
+        }
+    ]
+}

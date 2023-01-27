@@ -1,0 +1,7 @@
+name = "shion-discord"
+workers_dev = true
+compatibility_date = "2022-10-31"
+
+main = "./main.mjs"
+
+[vars]
