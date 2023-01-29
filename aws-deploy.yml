@@ -12,7 +12,7 @@ lambda:
     dir: main
     name: shion-discord_main
     runtime: nodejs18.x
-    memory: 128
+    memory: 192
     timeout: 30
 
 apig:
