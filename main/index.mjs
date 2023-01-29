@@ -1,6 +1,4 @@
-import nacl from "tweetnacl"
-
-import { responseType } from "#discord"
+import discord from "#discord"
 import actions from "./discord-actions.mjs"
 
 const redirectURL = "https://discord.com/oauth2/authorize?client_id=1041427678605090838&permissions=1497064766528&scope=applications.commands%20bot"
@@ -14,34 +12,16 @@ export const handler = async (event) => {
             body: "Hi, I'm Shion for Discord"
         }
     }
-    const ed = event.headers["x-signature-ed25519"] ?? null
-    const time = event.headers["x-signature-timestamp"] ?? null
 
-    const rawData = event.body
-
-    const isVerified = (
-        ed !== null
-        && time !== null
-        && nacl.sign.detached.verify(
-            Buffer.from(`${time}${rawData}`),
-            Buffer.from(ed, "hex"),
-            Buffer.from(process.env.public_key, "hex")
-        )
-    )
-
-    if (isVerified == false) {
+    const evt = discord.validate(event, process.env.public_key)
+    if (evt === null) {
         return {
             statusCode: 401,
             body: "Nope"
         }
     }
 
-    const evt = JSON.parse(rawData)
-
-    /*
-    event type 1 is discord making sure we are validating things correctly
-    */
-    if (evt.type === 1) {
+    if (evt.type === discord.event.ping) {
         return {
             statusCode: 200,
             headers: {
@@ -49,7 +29,7 @@ export const handler = async (event) => {
                 "Cache-Control": "no-cache"
             },
             body: JSON.stringify({
-                type: responseType.PONG
+                type: discord.response.pong
             })
         }
     }

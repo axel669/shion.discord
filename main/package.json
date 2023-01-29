@@ -13,7 +13,7 @@
     "tweetnacl": "^1.0.3"
   },
   "imports": {
-    "#discord": "./comm/discord.mjs",
+    "#discord": "./comm/discord/index.mjs",
     "#color": "./misc/color.mjs"
   }
 }

@@ -1,56 +1,58 @@
-import { roles, discordType, responseType } from "#discord"
+import discord from "#discord"
 
 import commands from "./commands/mapping.mjs"
+import interactions from "./interactions/main.mjs"
 
-const roleAction = {
-    "role-add": roles`put`,
-    "role-remove": roles`delete`,
-}
-const roleMessage = {
-    "role-add": "Enjoy your role!",
-    "role-remove": "Role removed!",
-}
-
-const newState = {
-    roles: (evt) => evt.data.values.map(
-        id => evt.data.resolved.roles[id].name
-    ),
-    channel: (evt) => Object.values(evt.data.resolved.channels)[0].name
-}
+// const roleAction = {
+//     "role-add": roles`put`,
+//     "role-remove": roles`delete`,
+// }
+// const roleMessage = {
+//     "role-add": "Enjoy your role!",
+//     "role-remove": "Role removed!",
+// }
 export default {
-    [discordType.SlashCommand]: async (evt) => {
+    [discord.event.command]: async (evt) => {
         const command = evt.data.name
 
         const commandResponse = await commands[command](evt)
-        console.log(commandResponse)
 
         return commandResponse
     },
-    [discordType.Interaction]: async (evt) => {
-        console.log(JSON.stringify(evt.data, null, 4))
-        if (evt.data.component_type !== 2) {
-            const prev = JSON.parse(evt.message.content)
-            const state = newState[evt.data.custom_id](evt)
+    [discord.event.component]: async (evt) => {
+        // console.log(JSON.stringify(evt, null, 4))
+        const [source, meta] = evt.data.custom_id.split(":")
+        const [command, target] = source.split(".")
+
+        const info = { source, meta, command, target }
+
+        const response = await interactions[source]?.(evt, info) ?? null
+
+        if (response === null) {
             return {
-                type: responseType.UPDATE_MESSAGE,
+                type: discord.response.message,
                 data: {
-                    content: JSON.stringify({ prev, state }, null, 2)
-                }
+                    content: "Something went wrong :(",
+                    flags: 1 << 6,
+                },
             }
         }
-        const [action, roleID] = evt.data.custom_id.split(":")
-        const userID = evt.member.user.id
 
-        await roleAction[action](
-            `/guilds/${evt.guild_id}/members/${userID}/roles/${roleID}`
-        )
+        return response
 
-        return {
-            type: responseType.MESSAGE,
-            data: {
-                content: roleMessage[action],
-                flags: 1 << 6,
-            },
-        }
+        // const [action, roleID] = evt.data.custom_id.split(":")
+        // const userID = evt.member.user.id
+
+        // await roleAction[action](
+        //     `/guilds/${evt.guild_id}/members/${userID}/roles/${roleID}`
+        // )
+
+        // return {
+        //     type: responseType.MESSAGE,
+        //     data: {
+        //         content: roleMessage[action],
+        //         flags: 1 << 6,
+        //     },
+        // }
     }
 }
