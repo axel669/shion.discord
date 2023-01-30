@@ -12,7 +12,8 @@ const event = {
 const response = {
     pong: 1,
     message: 4,
-    updateMessage: 7
+    updateMessage: 7,
+    modal: 9
 }
 
 const validate = (event, key) => {

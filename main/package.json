@@ -10,10 +10,12 @@
   "license": "ISC",
   "dependencies": {
     "@labyrinthos/http": "^0.1.0",
+    "fast-glob": "^3.2.12",
     "tweetnacl": "^1.0.3"
   },
   "imports": {
     "#discord": "./comm/discord/index.mjs",
-    "#color": "./misc/color.mjs"
+    "#color": "./misc/color.mjs",
+    "#import": "./misc/importdir.mjs"
   }
 }

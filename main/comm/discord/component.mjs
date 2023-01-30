@@ -1,4 +1,4 @@
-const type = {
+const componentType = {
     row: 1,
     button: 2,
     stringSelect: 3,
@@ -15,13 +15,17 @@ const buttonStyle = {
     danger: 4,
     link: 5,
 }
+const textInputType = {
+    line: 1,
+    paragraph: 2,
+}
 
 const row = (...children) => ({
-    type: type.row,
+    type: componentType.row,
     components: children,
 })
 const button = ({id, label, style, emoji, disabled, url}) => ({
-    type: type.button,
+    type: componentType.button,
     custom_id: id,
     label,
     emoji,
@@ -31,7 +35,7 @@ const button = ({id, label, style, emoji, disabled, url}) => ({
 })
 button.style = buttonStyle
 const roleSelect = ({ id, label, disabled, min, max }) => ({
-    type: type.roleSelect,
+    type: componentType.roleSelect,
     custom_id: id,
     placeholder: label,
     disabled,
@@ -39,18 +43,28 @@ const roleSelect = ({ id, label, disabled, min, max }) => ({
     max_values: max,
 })
 const channelSelect = ({ id, label, disabled, min, max }) => ({
-    type: type.channelSelect,
+    type: componentType.channelSelect,
     custom_id: id,
     placeholder: label,
     disabled,
     min_values: min,
     max_values: max,
 })
+const textInput = ({ id, type = "line", required, placeholder, label, value}) => ({
+    type: componentType.textInput,
+    custom_id: id,
+    style: textInputType[type] ?? 1,
+    required,
+    placeholder,
+    label,
+    value,
+})
 
 export default {
-    type,
+    type: componentType,
     button,
     row,
     roleSelect,
     channelSelect,
+    textInput,
 }

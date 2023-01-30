@@ -1,6 +1,17 @@
 import discord, { component } from "#discord"
 import color from "#color"
 
+const defaultText = [
+    "**Title**",
+    "Pick Roles",
+    "**Message**",
+    "Click a button to get a role (or remove it later).",
+    "**Channel**",
+    "none",
+    "**Roles**",
+    "none",
+].join("\n")
+
 export default async (evt) => {
     return {
         type: discord.response.message,
@@ -9,10 +20,19 @@ export default async (evt) => {
                 {
                     title: "Shion Role Grant Setup",
                     color: color.convertHex("#00aacc"),
-                    description: "**Channel**\nnone\n**Roles**\nnone",
+                    description: defaultText,
+                    fields: [
+                    ]
                 }
             ],
             components: [
+                component.row(
+                    component.button({
+                        label: "Edit Title/Message",
+                        id: "shion-roles.edit",
+                        style: component.button.style.primary,
+                    })
+                ),
                 component.row(
                     component.channelSelect({
                         id: "shion-roles.channel",

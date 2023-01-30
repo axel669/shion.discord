@@ -1,4 +1,4 @@
-import update from "./shared/update.mjs"
+import update from "./shared/$update.mjs"
 
 export default (evt, info) => update(
     evt,
