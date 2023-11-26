@@ -1,0 +1,7 @@
+name = "shion-discord"
+workers_dev = true
+compatibility_date = "2023-11-25"
+
+main = "main.js"
+
+compatibility_flags = [ "nodejs_compat" ]
